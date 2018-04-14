@@ -2,7 +2,7 @@ package sorting;
 
 import java.util.Random;
 
-public class BubleSort {
+public class BubbleSort {
 
 	public static void main(String[] args) {
 
