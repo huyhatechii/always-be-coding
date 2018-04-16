@@ -14,18 +14,14 @@ public class BubbleSort {
 
 		System.out.print("before sort: ");
 
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
-		}
+		show(arr);
 
 		int sortedArr[] = sortByBubble(arr);
 
 		System.out.println(" ");
 		System.out.print("after sort: ");
 
-		for (int i = 0; i < sortedArr.length; i++) {
-			System.out.print(sortedArr[i] + " ");
-		}
+		show(sortedArr);
 	}
 
 	private static int[] sortByBubble(int arr[]) {
@@ -41,5 +37,11 @@ public class BubbleSort {
 		}
 
 		return arr;
+	}
+	
+	private static void show(int arr[]) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
 	}
 }
