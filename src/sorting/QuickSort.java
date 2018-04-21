@@ -33,7 +33,7 @@ public class QuickSort {
 	}
 
 	private static int patition(int low, int hight) {
-		
+		// 1 2 3 4 5
 		int i = low - 1;
 
 		for (int j = low; j < hight; j++) {
