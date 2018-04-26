@@ -10,57 +10,60 @@ public class MergeSort {
 		System.out.print("before sort: ");
 
 		show(arr);
-		sort(0, 0, 9);
+		sort(0, arr.length - 1);
 		System.out.println(" ");
 		System.out.print("after sort: ");
 
 		show(arr);
 	}
 
-	private static void sort(int left, int midle, int right) {
-		
-		if (left < midle) {
-			int leftQuarter = (left + midle) / 2;
-			sort(left, leftQuarter, midle);
+	private static void sort(int left, int right) {
 
+		int middle = (right + left) / 2;
+
+		if (left < right) {
+			sort(left, middle);
+			sort(middle + 1, right);
 		}
 
-		if (midle + 1 < right) {
-			int rightQuarter = (midle + 1 + right) / 2;
-			sort(midle + 1, rightQuarter, right);
-		}
-		
-		merge(left, midle, right);
+		merge(left, middle, right);
 	}
 
-	private static void merge(int left, int midle, int right) {
+	private static void merge(int left, int middle, int right) {
 
 		// copy to 2 sub array
-		int leftArr[] = new int[midle - left + 1];
-		int rightArr[] = new int[right - midle];
+		int leftArr[] = new int[middle - left + 1];
+		int rightArr[] = new int[right - middle];
 
 		for (int i = 0; i < leftArr.length; i++) {
 			leftArr[i] = arr[left + i];
 		}
 
 		for (int i = 0; i < rightArr.length; i++) {
-			rightArr[i] = arr[midle + i + 1];
+			rightArr[i] = arr[middle + i + 1];
 		}
 
-		//
+		// merge
+		int i = 0, j = 0;
 		int k = left - 1;
-		for (int i = 0; i < leftArr.length; i++) {
-			for (int j = 0; j < rightArr.length; j++) {
-
-				if (leftArr[i] > rightArr[j] && rightArr[j] != -1) {
-
-					arr[++k] = rightArr[j];
-					rightArr[j] = -1;
-				}
-
+		while (i < leftArr.length && j < rightArr.length) {
+			if (leftArr[i] <= rightArr[j]) {
+				arr[++k] = leftArr[i];
+				i++;
+			} else {
+				arr[++k] = rightArr[j];
+				j++;
 			}
-			arr[++k] = leftArr[i];
+		}
 
+		while (i < leftArr.length) {
+			arr[++k] = leftArr[i];
+			i++;
+		}
+
+		while (j < rightArr.length) {
+			arr[++k] = rightArr[j];
+			j++;
 		}
 	}
 
